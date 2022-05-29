@@ -1,4 +1,7 @@
 # EngimaSim
+Just a fun side project
+
+# Description
 Python based model, replicating the intriguing Enigma Machine of WWII
 
 ## Usage
