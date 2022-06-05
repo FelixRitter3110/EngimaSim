@@ -2,24 +2,27 @@ from random import randrange
 import random
 import numpy as np
 import sys
+import tkinter as tk
 
 # Set whether you want enigma to set all variables randomly or whether you want to input them yourself
-random_selection = False
+random_selection = True
+
 
 if not random_selection:
     # [1-5] can't use the same rotor twice
     rot1 = 1
-    rot2 = 5
+    rot2 = 2
     rot3 = 3
 
     # [0-25]
-    rotor1_pos = 18
-    rotor2_pos = 21
-    rotor3_pos = 5
+    rotor1_pos = 0
+    rotor2_pos = 0
+    rotor3_pos = 0
 
     # Each plug pair must fill both letters. Don't use same letter twice
-    Plugs = np.array([["p", "s"], ["w", "l"], ["m", "o"], ["j", "i"], ["d", "n"]])
+    Plugs = np.array([])
 
+    # Example:
     # [["a", "b"], ["c", "d"], ["e", "f"], ["g", "h"], ["i", "j"], ["k", "l"], ["m", "n"], ["o", "p"], ["q", "r"], ["s", "t"]]
 
 else:
@@ -48,10 +51,11 @@ else:
         alphabet.remove(PlugB)
         Plugs = np.append(Plugs, np.array([[PlugA, PlugB]]), axis=0)
 
+
 # Error Handling
 if rot1 == rot2 or rot1 == rot3 or rot1 == rot2 or 1 >= rot1 >= 5 or 1 >= rot2 >= 5 or 1 >= rot3 >= 5:
     sys.exit("Please choose 3 different rotors between 1-5")
-if 0 <= rotor1_pos <= 25 or 0 <= rotor2_pos <= 25 or 0 <= rotor3_pos <= 25:
+if 0 > (rotor1_pos or rotor2_pos or rotor3_pos) or (rotor1_pos or rotor2_pos or rotor3_pos) > 25:
     sys.exit("Rotor Positions can only be between 0-25")
 if len(Plugs) >= 11:
     sys.exit("There can only be 11 Plugs connected")
@@ -191,7 +195,7 @@ def listToString(s):
     return str1
 
 # Takes user input for message
-print("only letters allowed. No Numbers or special characters")
+print("Only letters allowed. No Numbers or special characters!")
 mes = input("Enter your message: ")
 mes = mes.lower()
 message = []
